@@ -31,11 +31,34 @@ Check the folder [tools/vcpkg](tools/vcpkg) to see if vcpkg is present.
 
 Automatically done on Visual Studio 2022! 
 
-Working example:
+## Windows working example
+
+Using system vcpkg:
 
 ```
 PS C:\Users\XXXX\Source\Repos\manydeps-cln> vcpkg --version
 versão do programa de gerenciamento de pacotes vcpkg 2023-06-22-f19f3d9939100085fe2f7e41502d60b08e2083b6
+```
+
+Using local vcpkg (from submodule):
+
+```
+vcpkg package management program version 2023-08-09-9990a4c9026811a312cb2af78bf77f3d9d288416
+```
+
+## Linux working example
+
+Using system vcpkg (from devcontainer image):
+
+```
+$ vcpkg --version
+vcpkg package management program version 2023-01-24-8a88d63f241d391772fbde69af9cab96c3c64c75
+```
+
+Using local vcpkg (from submodule):
+
+```
+vcpkg package management program version 2023-08-09-9990a4c9026811a312cb2af78bf77f3d9d288416
 ```
 
 <!--
