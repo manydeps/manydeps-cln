@@ -29,6 +29,17 @@ Check the folder [tools/vcpkg](tools/vcpkg) to see if vcpkg is present.
 
 ### Second step: get vcpkg dependencies
 
+Automatically done on Visual Studio 2022! 
+
+Working example:
+
+```
+PS C:\Users\XXXX\Source\Repos\manydeps-cln> vcpkg --version
+versão do programa de gerenciamento de pacotes vcpkg 2023-06-22-f19f3d9939100085fe2f7e41502d60b08e2083b6
+```
+
+<!--
+
 #### On Windows
 
 On Windows Visual Studio, open the **Developer Command Prompt** and execute:
@@ -46,6 +57,8 @@ On Linux (or WSL), just run:
 ./tools/vcpkg/bootstrap-vcpkg.sh 
 ./script-deps.sh
 ```
+
+-->
 
 ## Common errors
 
