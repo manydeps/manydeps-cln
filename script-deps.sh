@@ -27,6 +27,7 @@ git submodule add https://github.com/microsoft/vcpkg $VCPKG_DIR
 # DO NOT DO THIS! BECAUSE vcpkg IS SO INSTABLE... IT MAY BREAK EVERY WEEK!
 #
 # (cd $VCPKG_DIR && git checkout master && git pull)
+echo "RUNNING vcpkg boostrap!"
 $VCPKG_DIR/$VCPKG_BOOTSTRAP
 
 $VCPKG_DIR/vcpkg --vcpkg-root $VCPKG_DIR search gmp
@@ -34,6 +35,7 @@ $VCPKG_DIR/vcpkg --vcpkg-root $VCPKG_DIR search mpir
 
 $VCPKG_DIR/vcpkg --vcpkg-root $VCPKG_DIR integrate install
 
+echo "RUNNING vcpkg install!"
 $VCPKG_DIR/vcpkg --vcpkg-root $VCPKG_DIR install --triplet=$VCPKG_TRIPLET
 
 #echo "Applying PATCH"
