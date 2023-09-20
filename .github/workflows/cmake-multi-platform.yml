@@ -112,4 +112,6 @@ jobs:
         ./my_test
         echo "RUNNING app_demo"
         ./app_demo
+        echo "RUNNING pi example"
+        ./build/external/cln/examples/pi
       
