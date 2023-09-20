@@ -26,24 +26,16 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         build_type: [Release]
         c_compiler: [gcc, clang, cl]
-        shell_type: [cmd, bash]
         include:
           - os: windows-latest
             c_compiler: cl
             cpp_compiler: cl
-            shell_type: cmd
-          - os: windows-latest
-            c_compiler: cl
-            cpp_compiler: cl
-            shell_type: bash
           - os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
-            shell_type: bash
           - os: ubuntu-latest
             c_compiler: clang
             cpp_compiler: clang++
-            shell_type: bash
         exclude:
           - os: windows-latest
             c_compiler: gcc
@@ -51,8 +43,6 @@ jobs:
             c_compiler: clang
           - os: ubuntu-latest
             c_compiler: cl
-          - os: ubuntu-latest
-            shell_type: cmd
 
     steps:
     - uses: actions/checkout@v3
@@ -85,24 +75,8 @@ jobs:
     - name: CMake Configure (Ubuntu)
       if: contains(matrix.os, 'ubuntu')
       run: |
-        echo "RUNNING CMAKE WINDOWS"
-        cmake -B ${{ steps.strings.outputs.build-output-dir }} -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -S ${{ github.workspace }} --preset=linux-release
-
-    - name: Configure VCPKG Dependencies (BASH)
-      if: contains(matrix.shell_type, 'bash-xxx')
-      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-      run: |
-        echo "RUNNING SCRIPT .\script-deps.sh"
-        ./script-deps.sh
-      shell: bash
-
-    - name: Configure VCPKG Dependencies (CMD)
-      if: contains(matrix.shell_type, 'cmd-xxx')
-      run: |
-        echo "RUNNING SCRIPT .\script-deps.bat"
-        .\script-deps.bat
-      shell: cmd
+        echo "RUNNING CMAKE UBUNTU"
+        cmake -B build -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -S . --preset=linux-release
 
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
