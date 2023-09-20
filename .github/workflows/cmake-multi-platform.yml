@@ -82,8 +82,8 @@ jobs:
         echo "RUNNING CMAKE WINDOWS"
         cmake -B ${{ steps.strings.outputs.build-output-dir }} -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -S ${{ github.workspace }} --preset=win-x64-release
 
-    - name: CMake Configure (Linux)
-      if: contains(matrix.os, 'linux')
+    - name: CMake Configure (Ubuntu)
+      if: contains(matrix.os, 'ubuntu')
       run: |
         echo "RUNNING CMAKE WINDOWS"
         cmake -B ${{ steps.strings.outputs.build-output-dir }} -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -S ${{ github.workspace }} --preset=linux-release
