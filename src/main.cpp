@@ -7,7 +7,7 @@
 // C++
 #include <vector>
 // local library
-#include <depbox-cln-lib/Testing.hpp>
+#include <manydeps-cln-lib/Testing.hpp>
 
 int main() {
   //
