@@ -46,7 +46,11 @@ mkdir -p build/
 # cmake -B build -S . --preset=$USE_PRESET
 (cd build && cmake .. --preset=$USE_PRESET)
 
+echo "BUILDING cmake release"
 cmake --build build --config Release
+
+echo "BUILDING example pi"
+cmake --build build --config Release --target pi
 
 ./build/my_test
 
