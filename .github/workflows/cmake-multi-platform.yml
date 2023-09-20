@@ -67,6 +67,13 @@ jobs:
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
+    - name: Configure VCPKG Dependencies (BASH)
+      if: contains(matrix.os, 'ubuntu')
+      run: |
+        echo "RUNNING SCRIPT .\script-deps.sh"
+        ./script-deps.sh
+      shell: bash
+      
     - name: CMake Configure (Windows)
       if: contains(matrix.os, 'windows')
       run: |
