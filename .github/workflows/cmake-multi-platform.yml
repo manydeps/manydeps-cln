@@ -90,6 +90,10 @@ jobs:
         dir
         echo "RUNNING my_test"
         .\my_test
+        echo "RUNNING app_demo"
+        .\app_demo
+        echo "SHOWING FILES on external/cln/"
+        dir external/cln
         echo "RUNNING TEST pi"
-        .\pi
+        .\external\cln\examples\pi
       
