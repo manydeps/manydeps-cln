@@ -36,7 +36,13 @@ $VCPKG_DIR/vcpkg --vcpkg-root $VCPKG_DIR integrate install
 
 $VCPKG_DIR/vcpkg --vcpkg-root $VCPKG_DIR install --triplet=$VCPKG_TRIPLET
 
-cmake -B build -S . --preset=$USE_PRESET
+#echo "Applying PATCH"
+#cp tools/patch/*.cmake external/cln/cmake/modules/
+
+echo "RUNNING cmake"
+mkdir -p build/
+# cmake -B build -S . --preset=$USE_PRESET
+(cd build && cmake .. --preset=$USE_PRESET)
 
 cmake --build build --config Release
 
