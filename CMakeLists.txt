@@ -133,5 +133,5 @@ else() # WINDOWS?
 target_link_libraries(my_test PRIVATE mpir)
 endif()
 
-# catch_discover_tests(my_test)
+catch_discover_tests(my_test)
 
