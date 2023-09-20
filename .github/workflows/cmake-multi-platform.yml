@@ -93,7 +93,7 @@ jobs:
         echo "RUNNING app_demo"
         .\app_demo
         echo "SHOWING FILES on external/cln/"
-        dir external/cln
+        dir external\cln
         echo "RUNNING TEST pi"
         .\external\cln\examples\pi
       
