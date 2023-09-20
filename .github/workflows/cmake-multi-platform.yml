@@ -76,8 +76,20 @@ jobs:
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
+    - name: CMake Configure (Windows)
+      if: contains(matrix.os, 'windows')
+      run: |
+        echo "RUNNING CMAKE WINDOWS"
+        cmake -B ${{ steps.strings.outputs.build-output-dir }} -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -S ${{ github.workspace }} --preset=win-x64-release
+
+    - name: CMake Configure (Linux)
+      if: contains(matrix.os, 'linux')
+      run: |
+        echo "RUNNING CMAKE WINDOWS"
+        cmake -B ${{ steps.strings.outputs.build-output-dir }} -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -S ${{ github.workspace }} --preset=linux-release
+
     - name: Configure VCPKG Dependencies (BASH)
-      if: contains(matrix.shell_type, 'bash')
+      if: contains(matrix.shell_type, 'bash-xxx')
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
@@ -86,7 +98,7 @@ jobs:
       shell: bash
 
     - name: Configure VCPKG Dependencies (CMD)
-      if: contains(matrix.shell_type, 'cmd')
+      if: contains(matrix.shell_type, 'cmd-xxx')
       run: |
         echo "RUNNING SCRIPT .\script-deps.bat"
         .\script-deps.bat
