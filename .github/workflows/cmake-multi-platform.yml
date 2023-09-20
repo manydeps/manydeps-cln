@@ -80,7 +80,7 @@ jobs:
         ./tools/vcpkg/vcpkg --vcpkg-root ./tools/vcpkg/ integrate install
         ./tools/vcpkg/vcpkg --vcpkg-root ./tools/vcpkg/ install --triplet=x64-linux
         echo "RUNNING CMAKE UBUNTU"
-        cmake -B build -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -S . --preset=linux-release
+        cmake -B build -S . --preset=linux-release
 
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
