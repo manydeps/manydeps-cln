@@ -171,6 +171,13 @@ For Linux they exist on `build/vcpkg_installed/x64-linux/lib/pkgconfig/` folder.
 
 If you find a better solution, please Let Us Know!
 
+## Known Issues
+
+For CLN, the cmake build cannot be made using "-B build", 
+since it only works changing directory to build folder (pattern "cd build && cmake ..").
+The failure happens with "AsmUnderscode.cmake" test, and some attempts to solve this issue
+have currently failed.
+
 ## License
 
 MIT License + LGPL License if using gmp or mpir
