@@ -75,6 +75,10 @@ jobs:
     - name: CMake Configure (Ubuntu)
       if: contains(matrix.os, 'ubuntu')
       run: |
+        echo "RUNNING VCPKG INSTALL"
+        ./tools/vcpkg/bootstrap-vcpkg.sh
+        ./tools/vcpkg/vcpkg --vcpkg-root ./tools/vcpkg/ integrate install
+        ./tools/vcpkg/vcpkg --vcpkg-root ./tools/vcpkg/ install --triplet=x64-linux
         echo "RUNNING CMAKE UBUNTU"
         cmake -B build -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -S . --preset=linux-release
 
