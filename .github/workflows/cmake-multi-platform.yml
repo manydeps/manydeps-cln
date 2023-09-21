@@ -77,6 +77,8 @@ jobs:
     - name: CMake Configure (Windows)
       if: contains(matrix.os, 'windows')
       run: |
+        echo "RUNNING CMAKE VERSION"
+        cmake --version
         echo "RUNNING CMAKE WINDOWS"
         cmake -B ${{ steps.strings.outputs.build-output-dir }} -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -S ${{ github.workspace }} --preset=win-x64-release
 
@@ -93,7 +95,7 @@ jobs:
 
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
-      run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+      run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }} --target all
 
     - name: Test (Windows)
       if: contains(matrix.os, 'windows')
@@ -103,6 +105,11 @@ jobs:
         .\my_test
         echo "RUNNING app_demo"
         .\app_demo
+        echo "LISTING files on build/"
+        dir
+        echo "LISTING files on external/cln/examples/"
+        dir external\cln\examples
+        .\external\cln\examples\pi
 
     - name: Test (Ubuntu)
       if: contains(matrix.os, 'ubuntu')
