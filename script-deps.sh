@@ -49,8 +49,15 @@ mkdir -p build/
 echo "BUILDING cmake release"
 cmake --build build --config Release
 
-echo "BUILDING example pi"
-cmake --build build --config Release --target pi
+echo "CHECK cmake version"
+cmake --version
 
+echo "BUILDING example all"
+cmake --build build --config Release --target all
+
+echo "EXECUTING my_test"
 ./build/my_test
+
+echo "EXECUTING pi"
+./build/external/cln/examples/pi
 
