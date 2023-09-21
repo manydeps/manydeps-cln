@@ -113,7 +113,7 @@ jobs:
         dir
         echo "LISTING files on external/cln/examples/"
         dir external\cln\examples
-        .\external\cln\examples\pi
+        .\external\cln\bin\pi
 
     - name: Test (Ubuntu)
       if: contains(matrix.os, 'ubuntu')
