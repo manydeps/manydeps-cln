@@ -17,6 +17,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+Include(FetchContent)
+
 # ===================
 # header only library
 # -------------------
@@ -66,6 +68,18 @@ set(MPIR_LIB_PATH "${VCPKG_WINDOWS}/lib")
 target_link_libraries(app_demo PRIVATE "${MPIR_LIB_PATH}/mpir.lib") # "${MPIR_LIB_PATH}/mpirxx.lib"
 endif()
 
+
+set(USE_SUBMODULE false)
+
+if(USE_SUBMODULE)
+FetchContent_Declare(cln GIT_REPOSITORY git://www.ginac.de/cln.git)
+FetchContent_MakeAvailable(cln)
+
+list(APPEND CMAKE_MODULE_PATH ${cln_SOURCE_DIR}/cmake/modules)
+
+find_package(GMP REQUIRED)
+else()
+
 # ====================================================
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/external/cln/cmake/modules")
 # -----------------------------------------------------------------------------------------
@@ -85,8 +99,10 @@ find_package(GMP REQUIRED)
 set(CLN_SOURCE_DIR ${CMAKE_SOURCE_DIR}/cln)
 # ====================================================
 
-
 add_subdirectory(external/cln)
+
+endif()
+
 # ------------------------------------
 # build cln into current application
 # ------------------------------------

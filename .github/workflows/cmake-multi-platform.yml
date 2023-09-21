@@ -95,7 +95,11 @@ jobs:
 
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
-      run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }} --target all
+      run: | 
+        echo "SHOW TARGETS"
+        cmake --build ${{ steps.strings.outputs.build-output-dir }} --target help
+        echo "CMAKE BUILD"
+        cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }} --target all
 
     - name: Test (Windows)
       if: contains(matrix.os, 'windows')
