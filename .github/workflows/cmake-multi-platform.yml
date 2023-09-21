@@ -113,8 +113,8 @@ jobs:
         dir
         echo "LISTING files on build/external/cln/src"
         dir external\cln\src
-        echo "LISTING files on external/cln/examples/bin"
-        dir external\cln\examples\bin
+        echo "LISTING files on external/cln/bin"
+        dir external\cln\bin
         echo "RUNNING pi"
         .\external\cln\bin\pi
 
