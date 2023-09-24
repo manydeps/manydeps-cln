@@ -4,3 +4,6 @@
 [submodule "external/cln"]
 	path = external/cln
 	url = git://www.ginac.de/cln.git
+[submodule "thirdparty/cln"]
+	path = thirdparty/cln
+	url = git://www.ginac.de/cln.git

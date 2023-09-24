@@ -1,0 +1,10 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_binary")
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "manydeps-cln-lib",
+    deps = ["//include/manydeps-cln-lib:all_hpp"],
+)
