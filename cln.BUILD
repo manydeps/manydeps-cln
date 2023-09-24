@@ -1,10 +1,72 @@
 load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
 
 package(
     default_visibility = ["//visibility:public"],
 )
 
-# thirdparty vcpkg-installed GMP library
+# FIX EXPANSIONS
+#include/cln/config.h
+#include/cln/host_cpu.h
+#include/cln/intparam.h
+#autoconf/cl_config.h
+#src/base/cl_base_config.h
+#src/base/cl_gmpconfig.h
+#src/timing/cl_t_config.h
+
+
+expand_template(
+    name = "cln_config",
+    out = "include/cln/config.h",
+    substitutions = {
+        "@ALIGNOF_VOIDP@" : "8",
+        "#cmakedefine GMP_DEMANDS_UINTD_LONG_LONG" : "/* #undef GMP_DEMANDS_UINTD_LONG_LONG */",
+        "#cmakedefine GMP_DEMANDS_UINTD_INT" : "/* #undef GMP_DEMANDS_UINTD_INT */",
+        "#cmakedefine GMP_DEMANDS_UINTD_LONG" : "#define GMP_DEMANDS_UINTD_LONG",
+        
+    },
+    template = "include/cln/config.h.cmake",
+)
+
+cc_library(
+    name = "cln_config_generated",
+    hdrs = ["include/cln/config.h"],
+    include_prefix = ".", 
+    visibility = ["//visibility:public"],
+)
+
+# ----------------------------------------
+
+expand_template(
+    name = "cln_timing_config",
+    out = "src/timing/cl_t_config.h",
+    substitutions = {
+        "#cmakedefine HAVE_GETTIMEOFDAY": "#define HAVE_GETTIMEOFDAY",
+    },
+    template = "src/timing/cl_t_config.h.cmake",
+)
+
+cc_library(
+    name = "cln_timing_config_generated",
+    hdrs = ["src/timing/cl_t_config.h"],
+    include_prefix = ".", 
+    visibility = ["//visibility:public"],
+)
+
+# ====================================
+
+cc_library(
+    name = "cln_generated",
+    deps = [
+        ":cln_config_generated",
+        ":cln_timing_config_generated"
+        ],
+    visibility = ["//visibility:public"],
+)
+
+# =================================================
+
+# CLN lib
 cc_library(
     name = "lib",
     srcs = glob(
@@ -40,7 +102,7 @@ cc_library(
         "src/real/algebraic/cl_RA_sqrt.cc",
     ]),
     includes = ["include/", "src/", "autoconf/",],
-    deps = ["@gmp//:lib"],
+    deps = [":cln_generated", "@gmp//:lib"],
     visibility = ["//visibility:public"],
     linkstatic = 1
 )
