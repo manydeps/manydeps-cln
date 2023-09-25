@@ -14,6 +14,7 @@ package(
 #src/base/cl_gmpconfig.h
 #src/timing/cl_t_config.h
 
+# ----------------------------------------
 
 expand_template(
     name = "cln_config",
@@ -31,6 +32,117 @@ expand_template(
 cc_library(
     name = "cln_config_generated",
     hdrs = ["include/cln/config.h"],
+    include_prefix = ".", 
+    visibility = ["//visibility:public"],
+)
+
+# ----------------------------------------
+
+expand_template(
+    name = "cln_host_cpu",
+    out = "include/cln/host_cpu.h",
+    substitutions = {
+        "__${CMAKE_SYSTEM_PROCESSOR}__" : "__x86_64__",       
+    },
+    template = "include/cln/host_cpu.h.cmake",
+)
+
+cc_library(
+    name = "cln_host_cpu_generated",
+    hdrs = ["include/cln/host_cpu.h"],
+    include_prefix = ".", 
+    visibility = ["//visibility:public"],
+)
+
+# ----------------------------------------
+
+expand_template(
+    name = "cln_intparam",
+    out = "include/cln/intparam.h",
+    substitutions = {
+        "@cl_char_bitsize@" : "8",    
+        "@cl_short_bitsize@" : "16",
+        "@cl_int_bitsize@" : "32",
+        "@cl_long_bitsize@" : "64",
+        "@cl_long_long_bitsize@" : "64",
+        "@cl_pointer_bitsize@" : "64",
+        "#cmakedefine short_little_endian" : "#define short_little_endian",
+        "#cmakedefine int_little_endian" : "#define int_little_endian",
+        "#cmakedefine long_little_endian" : "#define long_little_endian",
+        "#cmakedefine long_long_little_endian" : "#define long_long_little_endian",
+        "#cmakedefine short_big_endian" :"/* #undef short_big_endian */",
+        "#cmakedefine int_big_endian" : "/* #undef int_big_endian */",
+        "#cmakedefine long_big_endian" : "/* #undef long_big_endian */",
+        "#cmakedefine long_long_big_endian" : "/* #undef long_long_big_endian */"
+    },
+    template = "include/cln/intparam.h.cmake",
+)
+
+cc_library(
+    name = "cln_intparam_generated",
+    hdrs = ["include/cln/intparam.h"],
+    include_prefix = ".", 
+    visibility = ["//visibility:public"],
+)
+
+# ----------------------------------------
+
+expand_template(
+    name = "cln_autoconf_cl_config",
+    out = "autoconf/cl_config.h",
+    substitutions = {
+        "#cmakedefine CL_USE_GMP 1" : "#define CL_USE_GMP 1",
+        "#cmakedefine ASM_UNDERSCORE" : "/* #undef ASM_UNDERSCORE */",
+        "#cmakedefine CL_HAVE_ATTRIBUTE_FLATTEN" : "#define CL_HAVE_ATTRIBUTE_FLATTEN",
+        "#cmakedefine HAVE_UNISTD_H" : "#define HAVE_UNISTD_H",
+    },
+    template = "autoconf/cl_config.h.cmake",
+)
+
+cc_library(
+    name = "cln_autoconf_cl_config_generated",
+    hdrs = ["autoconf/cl_config.h"],
+    include_prefix = ".", 
+    visibility = ["//visibility:public"],
+)
+
+# ----------------------------------------
+# src/base/cl_base_config.h
+
+expand_template(
+    name = "cln_base_cl_base_config",
+    out = "src/base/cl_base_config.h",
+    substitutions = {
+        "#cmakedefine HAVE_GETTIMEOFDAY" : "#define HAVE_GETTIMEOFDAY",
+        "#cmakedefine GETTIMEOFDAY_DOTS" : "/* #undef GETTIMEOFDAY_DOTS */",
+        "#cmakedefine GETTIMEOFDAY_TZP_T" : "/* #undef GETTIMEOFDAY_TZP_T */",
+        "#cmakedefine HAVE_TIMES_CLOCK" : "/* #undef HAVE_TIMES_CLOCK */",
+    },
+    template = "src/base/cl_base_config.h.cmake",
+)
+
+cc_library(
+    name = "cln_base_cl_base_config_generated",
+    hdrs = ["src/base/cl_base_config.h"],
+    include_prefix = ".", 
+    visibility = ["//visibility:public"],
+)
+
+# ----------------------------------------
+#src/base/cl_gmpconfig.h
+
+expand_template(
+    name = "cln_base_cl_gmpconfig",
+    out = "src/base/cl_gmpconfig.h",
+    substitutions = {
+        "#cmakedefine CL_USE_GMP 1" : "#define CL_USE_GMP 1",
+    },
+    template = "src/base/cl_gmpconfig.h.cmake",
+)
+
+cc_library(
+    name = "cln_base_cl_gmpconfig_generated",
+    hdrs = ["src/base/cl_gmpconfig.h"],
     include_prefix = ".", 
     visibility = ["//visibility:public"],
 )
@@ -59,7 +171,12 @@ cc_library(
     name = "cln_generated",
     deps = [
         ":cln_config_generated",
-        ":cln_timing_config_generated"
+        ":cln_host_cpu_generated",
+        ":cln_intparam_generated",
+        ":cln_autoconf_cl_config_generated",
+        ":cln_base_cl_base_config_generated",
+        ":cln_base_cl_gmpconfig_generated",
+        ":cln_timing_config_generated",
         ],
     visibility = ["//visibility:public"],
 )

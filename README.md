@@ -178,6 +178,18 @@ since it only works changing directory to build folder (pattern "cd build && cma
 The failure happens with "AsmUnderscode.cmake" test, and some attempts to solve this issue
 have currently failed.
 
+## Using Bazel
+
+Bazel is **so much simpler!**
+Please take a look at [cln.BUILD](cln.BUILD) and [gmp.BUILD](gmp.BUILD),
+that declare both external libraries GMP and CLN.
+
+```
+bazel build ... --config windows
+bazel test ... --config windows
+bazel run @cln//:cln_example_fibonacci 10
+```
+
 ## License
 
 MIT License + LGPL License if using gmp or mpir
