@@ -31,7 +31,7 @@ void print_vector(std::ostream& stream, const cl_print_flags& flags,
       if (flags.vector_syntax == vsyntax_algebraic) fprintchar(stream, ',');
       fprintchar(stream, ' ');
     }
-    printfun(stream, flags, vector[(unsigned long)i]);
+    printfun(stream, flags, vector[static_cast<size_t>(i)]);
   }
   if (flags.vector_syntax == vsyntax_commonlisp)
     fprintchar(stream, ')');
