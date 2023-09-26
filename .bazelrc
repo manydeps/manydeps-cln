@@ -8,7 +8,7 @@
 #build --client_env=CC=clang
 
 # Platform-specific settings
-# build:windows --cxxopt=/std:c++17
+build:windows --cxxopt=-std=c++17 /DNDEBUG -DNO_ASM -DNO_ASM_LOOPS  # --cxxopt=/std:c++17
 build:linux --cxxopt=-std=c++17
 build:linux_clang --cxxopt=-std=c++17 --client_env=CC=clang
 build:linux_gcc --cxxopt=-std=c++17 --client_env=CC=gcc

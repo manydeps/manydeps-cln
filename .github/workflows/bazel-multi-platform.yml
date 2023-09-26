@@ -99,11 +99,15 @@ jobs:
         rm thirdparty/cln/src/vector/output/cl_SV_number_aprint.cc
         cp tools/patch/cl_SV_number_aprint.cc thirdparty/cln/src/vector/output/
         # cat thirdparty/cln/src/vector/output/cl_SV_number_aprint.cc | grep static_cast
+        echo "CHECK COMPILER! C:\PROGRA~1\MICROS~2\2022\ENTERP~1\VC\Tools\MSVC\1435~1.322\bin\HostX64\x64\cl.exe"
+        ls C:\PROGRA~1\MICROS~2\2022\ENTERP~1\VC\Tools\MSVC\1435~1.322\bin\HostX64\x64\cl.exe
+        echo "CHECK COMPILER! C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\bin\HostX64\x64\cl.exe"
+        ls "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\bin\HostX64\x64\cl.exe"
         echo "Finished Check Lib"
 
     - name: Build (WINDOWS)
       if: contains(matrix.os, 'windows')
-      run: bazel build ... -s
+      run: bazel build ... -s --config windows
 
     - name: Build (LINUX)
       if: contains(matrix.os, 'ubuntu')
