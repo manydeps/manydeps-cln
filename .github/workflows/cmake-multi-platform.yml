@@ -103,9 +103,10 @@ jobs:
 
     - name: Print Files
       run: | 
-        echo "PRINT FILES"
-        echo "cat build/thirdparty/autoconf/cl_config.h"
-        cat build/thirdparty/autoconf/cl_config.h
+        echo "PRINT SUPPORT FILES (autoconf)"
+        ls build/*
+        echo "cat build/thirdparty/cln/autoconf/cl_config.h"
+        cat build/thirdparty/cln/autoconf/cl_config.h
 
     - name: Test (Windows)
       if: contains(matrix.os, 'windows')
