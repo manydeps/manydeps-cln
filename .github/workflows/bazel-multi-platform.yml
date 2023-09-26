@@ -23,14 +23,11 @@ jobs:
       #
       # To add more build types (Release, Debug, RelWithDebInfo, etc.) customize the build_type list.
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-2019]
         build_type: [Release]
         c_compiler: [gcc, clang, cl]
         include:
-          - os: windows-latest
-            c_compiler: cl
-            cpp_compiler: cl
-          - os: windows-latest
+          - os: windows-2019
             c_compiler: cl
             cpp_compiler: cl
           - os: ubuntu-latest
@@ -40,9 +37,9 @@ jobs:
             c_compiler: clang
             cpp_compiler: clang++
         exclude:
-          - os: windows-latest
+          - os: windows-2019
             c_compiler: gcc
-          - os: windows-latest
+          - os: windows-2019
             c_compiler: clang
           - os: ubuntu-latest
             c_compiler: cl
@@ -102,11 +99,10 @@ jobs:
         cp tools/patch/cl_SV_number_aprint.cc thirdparty/cln/src/vector/output/
         cp tools/patch/cl_SV_aprint.cc thirdparty/cln/src/vector/output/
         cp tools/patch/cl_GV_number_aprint.cc thirdparty/cln/src/vector/output/
-        # cat thirdparty/cln/src/vector/output/cl_SV_number_aprint.cc | grep static_cast
-        echo "CHECK COMPILER (GOOD)! C:\PROGRA~1\MICROS~2\2022\ENTERP~1\VC\Tools\MSVC\1435~1.322\bin\HostX64\x64\cl.exe"
-        ls "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.35.32215\bin\HostX64\x64\cl.exe"
-        echo "CHECK COMPILER (BAD)! C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\bin\HostX64\x64\cl.exe"
-        ls "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\bin\HostX64\x64\cl.exe"
+        #echo "CHECK COMPILER (GOOD)! C:\PROGRA~1\MICROS~2\2022\ENTERP~1\VC\Tools\MSVC\1435~1.322\bin\HostX64\x64\cl.exe"
+        #ls "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.35.32215\bin\HostX64\x64\cl.exe"
+        #echo "CHECK COMPILER (BAD)! C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\bin\HostX64\x64\cl.exe"
+        #ls "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\bin\HostX64\x64\cl.exe"
         echo "Finished Check Lib"
 
     - name: Build (WINDOWS)
