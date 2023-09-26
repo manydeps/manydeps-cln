@@ -98,10 +98,10 @@ jobs:
         echo "FIX PART"
         rm thirdparty/cln/src/vector/output/cl_SV_number_aprint.cc
         rm thirdparty/cln/src/vector/output/cl_SV_aprint.cc
-        rm thirdparty/cln/src/vector/output/cl_GV_number_aprint
+        rm thirdparty/cln/src/vector/output/cl_GV_number_aprint.cc
         cp tools/patch/cl_SV_number_aprint.cc thirdparty/cln/src/vector/output/
         cp tools/patch/cl_SV_aprint.cc thirdparty/cln/src/vector/output/
-        cp tools/patch/cl_GV_number_aprint thirdparty/cln/src/vector/output/
+        cp tools/patch/cl_GV_number_aprint.cc thirdparty/cln/src/vector/output/
         # cat thirdparty/cln/src/vector/output/cl_SV_number_aprint.cc | grep static_cast
         echo "CHECK COMPILER (GOOD)! C:\PROGRA~1\MICROS~2\2022\ENTERP~1\VC\Tools\MSVC\1435~1.322\bin\HostX64\x64\cl.exe"
         ls "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.35.32215\bin\HostX64\x64\cl.exe"
