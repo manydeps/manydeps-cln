@@ -1,5 +1,9 @@
 # manydeps-cln
 
+[![CMake on Multiple Platforms](https://github.com/manydeps/manydeps-cln/actions/workflows/cmake-multi-platform.yml/badge.svg)](https://github.com/manydeps/manydeps-cln/actions/workflows/cmake-multi-platform.yml)
+
+[![Bazel on multiple platforms](https://github.com/manydeps/manydeps-cln/actions/workflows/bazel-multi-platform.yml/badge.svg)](https://github.com/manydeps/manydeps-cln/actions/workflows/bazel-multi-platform.yml)
+
 This is a demonstration project from the [ManyDeps](https://github.com/manydeps),
 for the C/C++ [CLN library from GINAC](https://www.ginac.de/CLN/) with GMP library using package managers (vcpkg and conan) on windows/linux.
 
