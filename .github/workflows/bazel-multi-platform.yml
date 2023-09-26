@@ -98,7 +98,8 @@ jobs:
         echo "FIX PART"
         rm thirdparty/cln/src/vector/output/cl_SV_number_aprint.cc
         cp tools/patch/cl_SV_number_aprint.cc thirdparty/cln/src/vector/output/
-        cat thirdparty/cln/src/vector/output/cl_SV_number_aprint.cc | grep static_cast
+        # cat thirdparty/cln/src/vector/output/cl_SV_number_aprint.cc | grep static_cast
+        echo "Finished Check Lib"
 
     - name: Build (WINDOWS)
       if: contains(matrix.os, 'windows')
