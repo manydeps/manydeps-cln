@@ -81,14 +81,14 @@ find_package(GMP REQUIRED)
 else()
 
 # ====================================================
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/external/cln/cmake/modules")
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/thirdparty/cln/cmake/modules")
 # -----------------------------------------------------------------------------------------
 # Override build/gmp-config.cmake from conan (if toolchain is activated) - prefix is first!
 # Note that we need to follow CLN recipes, not conan... as they are slightly different!
 # conan demands find_package(gmp ...) while CLN deals with find_package(GMP ...)
 # So, conan works with gmp_INCLUDE_DIR and CLN requires GMP_INCLUDE_DIR
 # -----------------------------------------------------------------------------------------
-set(CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/external/cln/cmake/modules")
+set(CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/thirdparty/cln/cmake/modules")
 # -----------------------------------------------------------
 # invoke FindGMP.cmake from CLN
 find_package(GMP REQUIRED)
@@ -99,7 +99,7 @@ find_package(GMP REQUIRED)
 set(CLN_SOURCE_DIR ${CMAKE_SOURCE_DIR}/cln)
 # ====================================================
 
-add_subdirectory(external/cln)
+add_subdirectory(thirdparty/cln)
 
 endif()
 

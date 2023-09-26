@@ -59,5 +59,5 @@ echo "EXECUTING my_test"
 ./build/my_test
 
 echo "EXECUTING pi"
-./build/external/cln/examples/pi
+./build/thirdparty/cln/examples/pi
 
