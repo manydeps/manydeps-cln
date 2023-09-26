@@ -107,7 +107,11 @@ jobs:
 
     - name: Build (WINDOWS)
       if: contains(matrix.os, 'windows')
-      run: bazel build ... -s --config windows
+      run: |
+        set BAZEL_VC=C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC
+        set BAZEL_VC_FULL_VERSION=14.35.32215
+        echo "TRYING TO USE VC=14.35.32215"
+        bazel build ... -s --config windows
 
     - name: Build (LINUX)
       if: contains(matrix.os, 'ubuntu')
