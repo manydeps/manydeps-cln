@@ -191,7 +191,12 @@ some issues in recent versions:
 - It fails on version: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\bin\HostX64\x64\cl.exe
 
 The error is related to operator[] overloading...
-        
+
+```
+cl_SV_aprint.cc(31): error C2593: 'operator []' is ambiguous
+```
+
+Some experimental fix is on tools/patch folder.
 
 ## Using Bazel
 
