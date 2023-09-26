@@ -80,7 +80,7 @@ jobs:
         echo "RUNNING CMAKE VERSION"
         cmake --version
         echo "RUNNING CMAKE WINDOWS"
-        cmake -B ${{ steps.strings.outputs.build-output-dir }} -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -S ${{ github.workspace }} --preset=win-x64-release
+        cmake -B ${{ steps.strings.outputs.build-output-dir }} -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -S ${{ github.workspace }} --preset=win-x64-release -DCMAKE_VERBOSE_MAKEFILE=ON
 
     - name: CMake Configure (Ubuntu)
       if: contains(matrix.os, 'ubuntu')
@@ -91,7 +91,7 @@ jobs:
         ./tools/vcpkg/vcpkg --vcpkg-root ./tools/vcpkg/ install --triplet=x64-linux
         echo "RUNNING CMAKE UBUNTU"
         mkdir -p build/
-        (cd build && cmake .. --preset=linux-release)
+        (cd build && cmake .. --preset=linux-release -DCMAKE_VERBOSE_MAKEFILE=ON)
 
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).

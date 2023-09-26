@@ -44,7 +44,7 @@ $VCPKG_DIR/vcpkg --vcpkg-root $VCPKG_DIR install --triplet=$VCPKG_TRIPLET
 echo "RUNNING cmake"
 mkdir -p build/
 # cmake -B build -S . --preset=$USE_PRESET
-(cd build && cmake .. --preset=$USE_PRESET)
+(cd build && cmake .. --preset=$USE_PRESET #-DCMAKE_VERBOSE_MAKEFILE=ON)
 
 echo "BUILDING cmake release"
 cmake --build build --config Release
