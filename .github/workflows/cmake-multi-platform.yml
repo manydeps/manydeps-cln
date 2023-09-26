@@ -101,6 +101,12 @@ jobs:
         echo "CMAKE BUILD"
         cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }} --target all
 
+    - name: Print Files
+      run: | 
+        echo "PRINT FILES"
+        echo "cat build/thirdparty/autoconf/cl_config.h"
+        cat build/thirdparty/autoconf/cl_config.h
+
     - name: Test (Windows)
       if: contains(matrix.os, 'windows')
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
@@ -111,12 +117,12 @@ jobs:
         .\app_demo
         echo "LISTING files on build/"
         dir
-        echo "LISTING files on build/external/cln/src"
-        dir external\cln\src
-        echo "LISTING files on external/cln/bin"
-        dir external\cln\bin
+        echo "LISTING files on build/thirdparty/cln/src"
+        dir thirdparty\cln\src
+        echo "LISTING files on build/thirdparty/cln/bin"
+        dir thirdparty\cln\bin
         echo "RUNNING pi"
-        .\external\cln\bin\pi
+        .\thirdparty\cln\bin\pi
 
     - name: Test (Ubuntu)
       if: contains(matrix.os, 'ubuntu')
@@ -127,5 +133,5 @@ jobs:
         echo "RUNNING app_demo"
         ./app_demo
         echo "RUNNING pi"
-        ./external/cln/examples/pi
+        ./thirdparty/cln/examples/pi
       
