@@ -105,8 +105,14 @@ jobs:
       run: | 
         echo "PRINT SUPPORT FILES (autoconf)"
         ls build/*
-        echo "cat build/thirdparty/cln/autoconf/cl_config.h"
+        echo "\ncat build/thirdparty/cln/autoconf/cl_config.h"
         cat build/thirdparty/cln/autoconf/cl_config.h
+        echo "\ncat build/thirdparty/clninclude/cln/intparam.h"
+        cat build/thirdparty/cln/include/cln/intparam.h
+        echo "\ncat build/thirdparty/cln/include/cln/config.h"
+        cat build/thirdparty/cln/include/cln/config.h
+        echo "\ncat build/thirdparty/cln/src/base/cl_base_config.h"
+        cat build/thirdparty/cln/src/base/cl_base_config.h
 
     - name: Test (Windows)
       if: contains(matrix.os, 'windows')
