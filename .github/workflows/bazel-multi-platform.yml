@@ -95,6 +95,8 @@ jobs:
         ls tools/vcpkg/packages/mpir_x64-windows-static/lib/*
         echo "lib /list tools/vcpkg/packages/mpir_x64-windows-static/lib/mpir.lib"
         lib /list tools/vcpkg/packages/mpir_x64-windows-static/lib/mpir.lib
+        echo "FIX"
+        cp tools/patch/cl_SV_number_aprint.cc thirdparty/cln/src/vector/output/
 
     - name: Build (WINDOWS)
       if: contains(matrix.os, 'windows')
