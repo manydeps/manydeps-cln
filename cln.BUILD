@@ -21,9 +21,9 @@ expand_template(
     out = "include/cln/config.h",
     substitutions = {
         "@ALIGNOF_VOIDP@" : "8",
-        "#cmakedefine GMP_DEMANDS_UINTD_LONG_LONG" : "/* #undef GMP_DEMANDS_UINTD_LONG_LONG */",
+        "#cmakedefine GMP_DEMANDS_UINTD_LONG_LONG" : "/* #undef GMP_DEMANDS_UINTD_LONG_LONG */", # WINDOWS IS LONG LONG!!!
         "#cmakedefine GMP_DEMANDS_UINTD_INT" : "/* #undef GMP_DEMANDS_UINTD_INT */",
-        "#cmakedefine GMP_DEMANDS_UINTD_LONG" : "#define GMP_DEMANDS_UINTD_LONG",
+        "#cmakedefine GMP_DEMANDS_UINTD_LONG" : "#define GMP_DEMANDS_UINTD_LONG", 
         
     },
     template = "include/cln/config.h.cmake",
@@ -63,7 +63,7 @@ expand_template(
         "@cl_char_bitsize@" : "8",    
         "@cl_short_bitsize@" : "16",
         "@cl_int_bitsize@" : "32",
-        "@cl_long_bitsize@" : "64",
+        "@cl_long_bitsize@" : "64", # WINDOWS IS 32!
         "@cl_long_long_bitsize@" : "64",
         "@cl_pointer_bitsize@" : "64",
         "#cmakedefine short_little_endian" : "#define short_little_endian",

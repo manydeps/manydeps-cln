@@ -103,7 +103,7 @@ jobs:
 
     - name: Build (WINDOWS)
       if: contains(matrix.os, 'windows')
-      run: bazel build ... -s --config windows
+      run: bazel build ... -s
 
     - name: Build (LINUX)
       if: contains(matrix.os, 'ubuntu')
