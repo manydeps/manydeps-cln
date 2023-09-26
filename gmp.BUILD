@@ -4,6 +4,9 @@ package(
     default_visibility = ["//visibility:public"],
 )
 
+# DOCUMENTATION ON SELECT:
+# https://bazel.build/reference/be/functions?hl=pt-br#select
+
 # thirdparty vcpkg-installed GMP library
 cc_library(
     name = "lib",

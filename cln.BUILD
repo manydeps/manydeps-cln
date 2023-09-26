@@ -93,14 +93,8 @@ expand_template(
     substitutions = {
         "#cmakedefine CL_USE_GMP 1" : "#define CL_USE_GMP 1",
         "#cmakedefine ASM_UNDERSCORE" : "/* #undef ASM_UNDERSCORE */",
-        "#cmakedefine CL_HAVE_ATTRIBUTE_FLATTEN" : select({
-            "@bazel_tools//src/conditions:windows": "/* #undef CL_HAVE_ATTRIBUTE_FLATTEN */",
-            "//conditions:default": "#define CL_HAVE_ATTRIBUTE_FLATTEN",
-        }),
-        "#cmakedefine HAVE_UNISTD_H" : select({
-            "@bazel_tools//src/conditions:windows": "/* #undef HAVE_UNISTD_H */",
-            "//conditions:default": "#define HAVE_UNISTD_H",,
-        }),
+        "#cmakedefine CL_HAVE_ATTRIBUTE_FLATTEN" : "#define CL_HAVE_ATTRIBUTE_FLATTEN",
+        "#cmakedefine HAVE_UNISTD_H" : "#define HAVE_UNISTD_H",
     },
     template = "autoconf/cl_config.h.cmake",
 )
