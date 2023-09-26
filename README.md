@@ -177,10 +177,21 @@ If you find a better solution, please Let Us Know!
 
 ## Known Issues
 
+### Regarding CMake
 For CLN, the cmake build cannot be made using "-B build", 
 since it only works changing directory to build folder (pattern "cd build && cmake ..").
 The failure happens with "AsmUnderscode.cmake" test, and some attempts to solve this issue
 have currently failed.
+
+### Regarding MSVC
+
+The [Microsoft Visual C++](https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B) has
+some issues in recent versions:
+- It works on version: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.35.32215\bin\HostX64\x64\cl.exe
+- It fails on version: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\bin\HostX64\x64\cl.exe
+
+The error is related to operator[] overloading...
+        
 
 ## Using Bazel
 
@@ -193,6 +204,7 @@ bazel build ... --config windows
 bazel test ... --config windows
 bazel run @cln//:cln_example_fibonacci 10
 ```
+
 
 ## License
 
