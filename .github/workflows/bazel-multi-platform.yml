@@ -110,6 +110,12 @@ jobs:
         bazel build ... --config windows
       shell: cmd
 
+    - name: Build Native GMP (BASH)
+      run: |
+        echo "RUNNING SCRIPT ./gmp-install.sh"
+        ./gmp-install.sh
+      shell: bash
+
     - name: Build (LINUX)
       if: contains(matrix.os, 'ubuntu')
       run: bazel build ... -s --config linux_${{ matrix.c_compiler }}
