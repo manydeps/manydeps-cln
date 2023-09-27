@@ -1,5 +1,6 @@
 load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
-load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
+# load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
+load("@aspect_bazel_lib//lib:expand_template.bzl", "expand_template")
 
 package(
     default_visibility = ["//visibility:public"],
@@ -63,7 +64,9 @@ expand_template(
         "@cl_char_bitsize@" : "8",    
         "@cl_short_bitsize@" : "16",
         "@cl_int_bitsize@" : "32",
-        "@cl_long_bitsize@" : "64", # WINDOWS IS 32!
+        ## "@cl_long_bitsize@" : "64", # WINDOWS IS 32!
+        ## "@cl_long_bitsize@" : "32", # 32 is windows, 64 is linux
+        "@cl_long_bitsize@" : "$(MY_LONG_SIZE)", # 32 is windows, 64 is linux
         "@cl_long_long_bitsize@" : "64",
         "@cl_pointer_bitsize@" : "64",
         "#cmakedefine short_little_endian" : "#define short_little_endian",
