@@ -26,9 +26,11 @@ expand_template(
     out = "include/cln/config.h",
     substitutions = {
         "@ALIGNOF_VOIDP@" : "8",
-        "#cmakedefine GMP_DEMANDS_UINTD_LONG_LONG" : "/* #undef GMP_DEMANDS_UINTD_LONG_LONG */", # WINDOWS IS LONG LONG!!!
+        # "#cmakedefine GMP_DEMANDS_UINTD_LONG_LONG" : "/* #undef GMP_DEMANDS_UINTD_LONG_LONG */", # linux solution
+        "#cmakedefine GMP_DEMANDS_UINTD_LONG_LONG" : "$(GMP_TYPE_LL)", # WINDOWS IS LONG LONG, LINUX IS LONG
         "#cmakedefine GMP_DEMANDS_UINTD_INT" : "/* #undef GMP_DEMANDS_UINTD_INT */",
-        "#cmakedefine GMP_DEMANDS_UINTD_LONG" : "#define GMP_DEMANDS_UINTD_LONG", 
+        # "#cmakedefine GMP_DEMANDS_UINTD_LONG" : "#define GMP_DEMANDS_UINTD_LONG",                # linux solution
+        "#cmakedefine GMP_DEMANDS_UINTD_LONG" : "$(GMP_TYPE_L)",       # WINDOWS IS LONG LONG, LINUX IS LONG
         
     },
     template = "include/cln/config.h.cmake",
