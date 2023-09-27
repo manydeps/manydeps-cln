@@ -11,5 +11,5 @@
 # Platform-specific settings
 build:windows --cxxopt=-std:c++17 --define=MY_LONG_SIZE=32 # --client_env=CC="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.35.32215\bin\HostX64\x64\cl.exe"  # --cxxopt=/std:c++17
 build:linux   --cxxopt=-std=c++17 --define=MY_LONG_SIZE=64
-build:linux_clang --cxxopt=-std=c++17 --client_env=CC=clang
-build:linux_gcc   --cxxopt=-std=c++17 --client_env=CC=gcc
+build:linux_clang --cxxopt=-std=c++17 --client_env=CC=clang --define=MY_LONG_SIZE=64
+build:linux_gcc   --cxxopt=-std=c++17 --client_env=CC=gcc   --define=MY_LONG_SIZE=64

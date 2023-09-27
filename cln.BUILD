@@ -1,5 +1,9 @@
 load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
 # load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
+#
+# -----------------------------------------
+# https://docs-legacy.aspect.build/aspect-build/bazel-lib/v0.9.6/docs/expand_make_vars-docgen.html#expand_template
+# https://github.com/aspect-build/bazel-lib
 load("@aspect_bazel_lib//lib:expand_template.bzl", "expand_template")
 
 package(
