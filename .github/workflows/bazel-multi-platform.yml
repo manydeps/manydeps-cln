@@ -79,12 +79,17 @@ jobs:
         ./vcpkg-install.sh
       shell: bash
 
+    - name: GMP Build Native (BASH)
+      run: |
+        echo "RUNNING SCRIPT ./gmp-install.sh"
+        ./gmp-install.sh
+      shell: bash
+
     - name: Check Lib (MACOS)
       if: contains(matrix.os, 'macos')
       run: |
         echo "DISPLAY ERROR, IF OSX"
         cat tools/vcpkg/buildtrees/gmp/autoconf-x64-osx-err.log
-
 
     - name: Check Lib (WINDOWS)
       if: contains(matrix.os, 'windows')
@@ -92,13 +97,12 @@ jobs:
         ls tools/vcpkg/packages/mpir_x64-windows-static/lib/*
         echo "lib /list tools/vcpkg/packages/mpir_x64-windows-static/lib/mpir.lib"
         lib /list tools/vcpkg/packages/mpir_x64-windows-static/lib/mpir.lib
-        echo "FIX PART"
-        # rm thirdparty/cln/src/vector/output/cl_SV_number_aprint.cc
-        # rm thirdparty/cln/src/vector/output/cl_SV_aprint.cc
-        # rm thirdparty/cln/src/vector/output/cl_GV_number_aprint.cc
-        # cp tools/patch/cl_SV_number_aprint.cc thirdparty/cln/src/vector/output/
-        # cp tools/patch/cl_SV_aprint.cc thirdparty/cln/src/vector/output/
-        # cp tools/patch/cl_GV_number_aprint.cc thirdparty/cln/src/vector/output/
+        echo "ls thirdparty/gmp"
+        ls thirdparty/gmp
+        echo "ls thirdparty/gmp/.libs"
+        ls thirdparty/gmp/.libs
+        echo "lib /list thirdparty/gmp/.libs/gmp.lib"
+        lib /list thirdparty/gmp/.libs/gmp.lib
         echo "Finished Check Lib"
 
     - name: Build (WINDOWS)
@@ -109,12 +113,6 @@ jobs:
         # echo "TRYING TO USE VC=14.35.32215"
         bazel build ... --config windows
       shell: cmd
-
-    - name: Build Native GMP (BASH)
-      run: |
-        echo "RUNNING SCRIPT ./gmp-install.sh"
-        ./gmp-install.sh
-      shell: bash
 
     - name: Build (LINUX)
       if: contains(matrix.os, 'ubuntu')
