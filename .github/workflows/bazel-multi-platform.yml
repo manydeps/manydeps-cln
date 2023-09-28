@@ -126,8 +126,12 @@ jobs:
         #lib /list thirdparty/gmp/.libs/gmp.lib
         echo "ls thirdparty/mpir"
         ls thirdparty/mpir
-        echo "lib /list thirdparty\mpir\lib\x64\Release/mpir.lib"
-        lib /list thirdparty/mpir\lib\x64\Release/mpir.lib
+        echo "lib /list thirdparty\mpir\lib\x64\Release\mpir.lib"
+        lib /list thirdparty\mpir\lib\x64\Release\mpir.lib
+        echo "dumpbin /directives thirdparty\mpir\lib\x64\Release\mpir.lib"
+        dumpbin /directives thirdparty\mpir\lib\x64\Release\mpir.lib
+        echo "dumpbin /directives thirdparty\mpir\lib\x64\Release\mpirxx.lib"
+        dumpbin /directives thirdparty\mpir\lib\x64\Release\mpirxx.lib
         echo "Finished Check Lib"
 
     - name: Build (WINDOWS)
