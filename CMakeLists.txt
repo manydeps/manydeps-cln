@@ -144,9 +144,9 @@ add_executable(my_test tests/manydeps_cln.test.cpp)
 target_link_libraries(my_test PRIVATE Catch2::Catch2 Catch2::Catch2WithMain)
 
 if(UNIX)
-target_link_libraries(my_test PRIVATE gmp::gmp gmp::gmpxx)
+target_link_libraries(my_test PRIVATE gmp::gmp gmp::gmpxx cln)
 else() # WINDOWS?
-target_link_libraries(my_test PRIVATE mpir)
+target_link_libraries(my_test PRIVATE mpir cln)
 endif()
 
 catch_discover_tests(my_test)
