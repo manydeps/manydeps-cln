@@ -69,6 +69,23 @@ jobs:
         echo "FINISHED build in CMD!"
       shell: cmd
 
+    - name: FIRST Check Lib (WINDOWS)
+      if: contains(matrix.os, 'windows')
+      run: |
+        echo "ls thirdparty/mpir"
+        ls thirdparty/mpir
+        echo "ls thirdparty/mpir/msvc"
+        ls thirdparty/mpir/msvc
+        echo "ls thirdparty/mpir/msvc/vc22"
+        ls thirdparty/mpir/msvc/vc22
+        echo "ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx"
+        ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx
+        echo "ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/"
+        ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/
+        echo "lib /list thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/gmp.lib"
+        lib /list thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/gmp.lib
+        echo "Finished Check Lib"
+
     - name: Get python dependencies
       shell: bash
       run: |
