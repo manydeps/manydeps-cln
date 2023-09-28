@@ -66,8 +66,6 @@ jobs:
         cd .\thirdparty\mpir\msvc\vs22\
         echo "building generic version"
         cmd /c msbuild.bat gc LIB x64 Release
-        # echo "building skylake_avx version"
-        # cmd /c msbuild.bat skylake_avx LIB x64 Release
         echo "FINISHED build in CMD!"
       shell: cmd
 
