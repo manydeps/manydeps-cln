@@ -7,6 +7,13 @@
 //
 #include <gmp.h>    // NOLINT
 #include <gmpxx.h>  // NOLINT
+//
+#include <cln/string.h>
+//
+
+namespace cln {
+extern cl_heap_string* cl_make_heap_string(const char* ptr);
+}
 
 TEST_CASE("Teste1-X") {
   int x = 10;
