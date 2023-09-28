@@ -74,23 +74,9 @@ jobs:
       run: |
         echo "ls thirdparty/mpir"
         ls thirdparty/mpir
-        echo "ls thirdparty/mpir/lib"
-        ls thirdparty/mpir/lib
-        echo "ls thirdparty/mpir/lib/x64/"
-        ls thirdparty/mpir/lib/x64
-        echo "ls thirdparty/mpir/lib/x64/Release"
-        ls thirdparty/mpir/lib/x64/Release
-        echo "ls thirdparty/mpir/msvc"
-        ls thirdparty/mpir/msvc
-        echo "ls thirdparty/mpir/msvc/vc22"
-        ls thirdparty/mpir/msvc/vc22
-        echo "ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx"
-        ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx
-        echo "ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/"
-        ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/
-        echo "lib /list thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/gmp.lib"
-        lib /list thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/gmp.lib
-        echo "Finished Check Lib"
+        echo "lib /list thirdparty\mpir\lib\x64\Release/mpir.lib"
+        lib /list thirdparty/mpir\lib\x64\Release/mpir.lib
+        echo "Finished FIRST Check Lib"
 
     - name: Get python dependencies
       shell: bash
@@ -140,14 +126,8 @@ jobs:
         #lib /list thirdparty/gmp/.libs/gmp.lib
         echo "ls thirdparty/mpir"
         ls thirdparty/mpir
-        echo "ls thirdparty/mpir/msvc/vc22"
-        ls thirdparty/mpir/msvc/vc22
-        echo "ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx"
-        ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx
-        echo "ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/"
-        ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/
-        echo "lib /list thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/gmp.lib"
-        lib /list thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/gmp.lib
+        echo "lib /list thirdparty\mpir\lib\x64\Release/mpir.lib"
+        lib /list thirdparty/mpir\lib\x64\Release/mpir.lib
         echo "Finished Check Lib"
 
     - name: Build (WINDOWS)
