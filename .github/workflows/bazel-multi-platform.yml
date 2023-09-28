@@ -23,7 +23,7 @@ jobs:
       #
       # To add more build types (Release, Debug, RelWithDebInfo, etc.) customize the build_type list.
       matrix:
-        os: [ubuntu-latest, windows-2019]
+        os: [ubuntu-latest, windows-latest]
         build_type: [Release]
         c_compiler: [gcc, clang, cl]
         include:
@@ -37,9 +37,9 @@ jobs:
             c_compiler: clang
             cpp_compiler: clang++
         exclude:
-          - os: windows-2019
+          - os: windows-latest
             c_compiler: gcc
-          - os: windows-2019
+          - os: windows-latest
             c_compiler: clang
           - os: ubuntu-latest
             c_compiler: cl
@@ -80,10 +80,23 @@ jobs:
       shell: bash
 
     - name: GMP Build Native (BASH)
+      if: contains(matrix.os, 'ubuntu')
       run: |
         echo "RUNNING SCRIPT ./gmp-install.sh"
         ./gmp-install.sh
       shell: bash
+
+    - name: GMP Build Native (CMD)
+      if: contains(matrix.os, 'windows')
+      run: |
+        echo "RUNNING MANUAL BUILD"
+        cd .\thirdparty\mpir\msvc\vs22\
+        echo "building generic version"
+        cmd /c msbuild.bat gc LIB x64 Release
+        echo "building skylake_avx version"
+        cmd /c msbuild.bat skylake_avx LIB x64 Release
+        echo "FINISHED build in CMD!"
+      shell: cmd
 
     - name: Check Lib (MACOS)
       if: contains(matrix.os, 'macos')
