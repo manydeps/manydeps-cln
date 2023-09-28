@@ -27,7 +27,7 @@ jobs:
         build_type: [Release]
         c_compiler: [gcc, clang, cl]
         include:
-          - os: windows-2019
+          - os: windows-latest
             c_compiler: cl
             cpp_compiler: cl
           - os: ubuntu-latest
@@ -110,12 +110,19 @@ jobs:
         ls tools/vcpkg/packages/mpir_x64-windows-static/lib/*
         echo "lib /list tools/vcpkg/packages/mpir_x64-windows-static/lib/mpir.lib"
         lib /list tools/vcpkg/packages/mpir_x64-windows-static/lib/mpir.lib
-        echo "ls thirdparty/gmp"
-        ls thirdparty/gmp
-        echo "ls thirdparty/gmp/.libs"
-        ls thirdparty/gmp/.libs
-        echo "lib /list thirdparty/gmp/.libs/gmp.lib"
-        lib /list thirdparty/gmp/.libs/gmp.lib
+        #echo "ls thirdparty/gmp"
+        #ls thirdparty/gmp
+        #echo "ls thirdparty/gmp/.libs"
+        #ls thirdparty/gmp/.libs
+        #echo "lib /list thirdparty/gmp/.libs/gmp.lib"
+        #lib /list thirdparty/gmp/.libs/gmp.lib
+        echo "ls thirdparty/mpir"
+        ls thirdparty/mpir
+        thirdparty\mpir\msvc\vs22\lib_mpir_cxx\x64\Release\mpirxx.lib
+        echo "ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/"
+        ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/
+        echo "lib /list thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/gmp.lib"
+        lib /list thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/gmp.lib
         echo "Finished Check Lib"
 
     - name: Build (WINDOWS)

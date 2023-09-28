@@ -10,7 +10,7 @@ new_local_repository(
     name = "gmp",
     #path = "./tools/vcpkg/packages",
     #build_file = "gmp.vcpkg.BUILD",
-    path = "./thirdparty/gmp",
+    path = "./thirdparty",
     build_file = "gmp.BUILD",
 )
 

@@ -7,6 +7,9 @@ package(
 # DOCUMENTATION ON SELECT:
 # https://bazel.build/reference/be/functions?hl=pt-br#select
 
+# MPIR instructions
+# https://stackoverflow.com/questions/47359417/how-to-compile-gmp-for-windows-using-visual-studio
+
 # thirdparty vcpkg-installed GMP library
 cc_library(
     name = "lib",
@@ -14,22 +17,23 @@ cc_library(
     #    ["vcpkg_installed/x64-linux/lib/**/*.a"],
     #    ["vcpkg_installed/x64-linux/lib/**/*.lib"]
     #),
+    # thirdparty\mpir\msvc\vs22\lib_mpir_cxx\x64\Release\mpirxx.lib
     srcs = select({
-        "@bazel_tools//src/conditions:windows": glob([".libs/**/gmp.lib", ".libs/**/gmp.dll"]),
+        "@bazel_tools//src/conditions:windows": glob(["mpir/msvc/**/mpir.lib", "mpir/msvc/**/mpirxx.lib"]),
         "@bazel_tools//src/conditions:darwin": glob(["gmp_x64-osx/lib/**/*.a"]),
-        "//conditions:default": glob([".libs/**/libgmp.a", ".libs/**/libgmp.so"]),
+        "//conditions:default": glob(["gmp/.libs/**/libgmp.a", "gmp/.libs/**/libgmp.so"]),
     }),
     #hdrs = glob(["vcpkg_installed/x64-linux/include/**/*.h"]),
     hdrs = select({
-        "@bazel_tools//src/conditions:windows": glob(["gmp.h", "gmpxx.h"]),
+        "@bazel_tools//src/conditions:windows": glob(["mpir/gmp.h", "mpir/gmpxx.h"]),
         "@bazel_tools//src/conditions:darwin": glob(["gmp_x64-osx/include/**/*.h"]),
-        "//conditions:default": glob(["gmp.h", "gmpxx.h"]),
+        "//conditions:default": glob(["gmp/gmp.h", "gmp/gmpxx.h"]),
     }),
     #includes = ["vcpkg_installed/x64-linux/include/"],
     includes = select({
-        "@bazel_tools//src/conditions:windows": [""],
+        "@bazel_tools//src/conditions:windows": ["mpir"],
         "@bazel_tools//src/conditions:darwin": ["gmp_x64-osx/include/"],
-        "//conditions:default": [""],
+        "//conditions:default": ["gmp"],
     }),
     visibility = ["//visibility:public"],
     #linkstatic = 1
