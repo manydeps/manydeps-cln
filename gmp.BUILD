@@ -25,13 +25,13 @@ cc_library(
     }),
     #hdrs = glob(["vcpkg_installed/x64-linux/include/**/*.h"]),
     hdrs = select({
-        "@bazel_tools//src/conditions:windows": glob(["mpir/gmp.h", "mpir/gmpxx.h"]),
+        "@bazel_tools//src/conditions:windows": glob(["mpir/lib/x64/Release/gmp.h", "mpir/lib/x64/Release/gmpxx.h"]),
         "@bazel_tools//src/conditions:darwin": glob(["gmp_x64-osx/include/**/*.h"]),
         "//conditions:default": glob(["gmp/gmp.h", "gmp/gmpxx.h"]),
     }),
     #includes = ["vcpkg_installed/x64-linux/include/"],
     includes = select({
-        "@bazel_tools//src/conditions:windows": ["mpir"],
+        "@bazel_tools//src/conditions:windows": ["mpir/lib/x64/Release/"],
         "@bazel_tools//src/conditions:darwin": ["gmp_x64-osx/include/"],
         "//conditions:default": ["gmp"],
     }),

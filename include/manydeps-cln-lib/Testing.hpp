@@ -64,10 +64,22 @@ const cl_I fibonacci(int n) {
   }
 }
 
+#include <cln/string.h>
+
+namespace cln {
+extern cl_heap_string* cl_make_heap_string(const char* ptr);
+}
+
 int basic_testing() {
   //
   int n = 6;
   cl_I r = fibonacci(n);  // 5+3=8
   std::cout << "fib(" << n << ") = " << r << std::endl;
+  // testing 'cl_make_heap_string' from library
+  std::string str("123");
+  cln::cl_heap_string* out = cln::cl_make_heap_string(str.c_str());
+  std::cout << out << std::endl;
+  cl_free_heap_object(out);
+  //
   return 0;
 }
