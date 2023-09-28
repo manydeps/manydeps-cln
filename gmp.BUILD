@@ -36,5 +36,5 @@ cc_library(
         "//conditions:default": ["gmp"],
     }),
     visibility = ["//visibility:public"],
-    #linkstatic = 1
+    linkstatic = 1
 )

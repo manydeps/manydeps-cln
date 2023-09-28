@@ -15,5 +15,6 @@ cc_binary(
         "src/**/*.h", 
         "src/**/*.cpp"
     ]),
-    deps = ["//include:manydeps-cln-lib", "@gmp//:lib", "@cln//:lib"]
+    deps = ["//include:manydeps-cln-lib", "@gmp//:lib", "@cln//:lib"],
+    linkstatic=1
 )

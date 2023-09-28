@@ -118,6 +118,8 @@ jobs:
         ls tools/vcpkg/packages/mpir_x64-windows-static/lib/*
         echo "lib /list tools/vcpkg/packages/mpir_x64-windows-static/lib/mpir.lib"
         lib /list tools/vcpkg/packages/mpir_x64-windows-static/lib/mpir.lib
+        echo "dumpbin /directives tools/vcpkg/packages/mpir_x64-windows-static/lib/mpir.lib"
+        dumpbin /directives tools/vcpkg/packages/mpir_x64-windows-static/lib/mpir.lib
         #echo "ls thirdparty/gmp"
         #ls thirdparty/gmp
         #echo "ls thirdparty/gmp/.libs"
