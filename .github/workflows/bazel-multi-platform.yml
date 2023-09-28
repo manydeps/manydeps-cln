@@ -74,6 +74,12 @@ jobs:
       run: |
         echo "ls thirdparty/mpir"
         ls thirdparty/mpir
+        echo "ls thirdparty/mpir/lib"
+        ls thirdparty/mpir/lib
+        echo "ls thirdparty/mpir/lib/x64/"
+        ls thirdparty/mpir/lib/x64
+        echo "ls thirdparty/mpir/lib/x64/Release"
+        ls thirdparty/mpir/lib/x64/Release
         echo "ls thirdparty/mpir/msvc"
         ls thirdparty/mpir/msvc
         echo "ls thirdparty/mpir/msvc/vc22"
