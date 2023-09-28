@@ -119,10 +119,10 @@ jobs:
         #lib /list thirdparty/gmp/.libs/gmp.lib
         echo "ls thirdparty/mpir"
         ls thirdparty/mpir
-        echo "ls thirdparty/mpir/vc22"
-        ls thirdparty/mpir/vc22
-        echo "ls thirdparty/mpir/vc22/lib_mpir_cxx"
-        ls thirdparty/mpir/vc22/lib_mpir_cxx
+        echo "ls thirdparty/mpir/msvc/vc22"
+        ls thirdparty/mpir/msvc/vc22
+        echo "ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx"
+        ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx
         echo "ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/"
         ls thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/
         echo "lib /list thirdparty/mpir/msvc/vc22/lib_mpir_cxx/x64/Release/gmp.lib"
