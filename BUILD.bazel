@@ -12,8 +12,7 @@ sh_binary(
 cc_binary(
     name = "app_demo",
     srcs = glob([
-        "src/**/*.h", 
-        "src/**/*.cpp"
+        "src/main.cpp", 
     ]),
     deps = ["//include:manydeps-cln-lib", "@gmp//:lib", "@cln//:cln"],
     linkstatic=1
