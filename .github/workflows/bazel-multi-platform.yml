@@ -77,7 +77,7 @@ jobs:
       shell: bash
 
     - name: GMP Build Native (PATCH BASH)
-      if: contains(matrix.os, 'windows')
+      if: contains(matrix.os, 'windowsxx')
       run: |
         echo "RUNNING PATCH FOR MPIR BUILD"
         echo "copy c++20 standard patch to MPIR"
