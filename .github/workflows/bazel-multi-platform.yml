@@ -84,6 +84,8 @@ jobs:
         ls thirdparty/mpir
         echo "lib /list thirdparty\mpir\lib\x64\Release/mpir.lib"
         lib /list thirdparty/mpir\lib\x64\Release/mpir.lib
+        echo "dumpbin /EXPORTS thirdparty\mpir\lib\x64\Release\mpir.lib"
+        dumpbin /EXPORTS thirdparty\mpir\lib\x64\Release\mpir.lib
         echo "Finished FIRST Check Lib"
 
     - name: Get python dependencies
