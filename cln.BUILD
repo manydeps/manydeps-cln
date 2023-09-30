@@ -247,7 +247,18 @@ cc_library(
     # deps = [":cln_generated", "@gmp//:lib"],
     deps = [":cln_generated"],
     visibility = ["//visibility:public"],
-    linkstatic = 1
+    linkstatic = False,
+    # linkstatic False means to generate .so / .dll
+    #
+    ###linkshared=1 # NOT AVAILABLE IN cc_library
+    # CANNOT USE linkshared HERE
+    #
+    alwayslink = True,   # important (According to...)
+    #
+    # alwayslink ON will generate libcln.lo and libcln.so (NOT libcln.a)
+    #
+    # https://stackoverflow.com/questions/51689092/playing-with-bazel-c-tutorials-build-does-not-create-use-shared-libraries
+    copts=["-fPIC"]
 )
 
 # bazel run @cln//:cln_example_fibonacci 10
