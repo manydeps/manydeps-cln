@@ -52,6 +52,17 @@ jobs:
         git submodule update --init --recursive
         git pull --recurse-submodules
 
+    - name: Show all CL (WINDOWS)
+      if: contains(matrix.os, 'windows')
+      run: |
+        echo "ls C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\"
+        ls C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\
+        echo "which cl"
+        which cl
+        echo "which link"
+        which link
+      shell: bash
+
     - name: GMP Build Native (BASH)
       if: contains(matrix.os, 'ubuntu')
       run: |
@@ -162,16 +173,6 @@ jobs:
         echo "dumpbin /directives bazel-bin\external\cln\cln.lib"
         dumpbin /directives bazel-bin\external\cln\cln.lib
 
-    - name: Show all CL (WINDOWS)
-      if: contains(matrix.os, 'windows')
-      run: |
-        echo "ls C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\"
-        ls C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\
-        echo "which cl"
-        which cl
-        echo "which link"
-        which link
-      shell: bash
 
     - name: Run CLN demo (WINDOWS)
       if: contains(matrix.os, 'windows')
