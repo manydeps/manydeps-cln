@@ -52,37 +52,12 @@ jobs:
         git submodule update --init --recursive
         git pull --recurse-submodules
 
-    - name: Show all CL (WINDOWS)
-      if: contains(matrix.os, 'windowsxxx')
-      run: |
-        echo "dir C:\Program Files\"
-        dir "C:\Program Files\"
-        echo "dir C:\Program Files\Microsoft Visual Studio\"
-        dir "C:\Program Files\Microsoft Visual Studio\"
-        echo "dir C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\"
-        dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\"
-        echo "where.exe cl"
-        where.exe cl
-        echo "where.exe link"
-        where.exe link
-        echo "DELETE LATEST VERSION = 14.37.32822"
-        rd /s /q "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822"
-      shell: cmd
-
     - name: GMP Build Native (BASH)
       if: contains(matrix.os, 'ubuntu')
       run: |
         echo "RUNNING SCRIPT ./gmp-install.sh"
         ./gmp-install.sh
       shell: bash
-
-    - name: GMP Build Native (PATCH BASH)
-      if: contains(matrix.os, 'windowsxx')
-      run: |
-        echo "RUNNING PATCH FOR MPIR BUILD"
-        echo "copy c++20 standard patch to MPIR"
-        cp ./tools/patch/lib_mpir_cxx.vcxproj ./thirdparty/mpir/msvc/vs22/lib_mpir_cxx/
-        cp ./tools/patch/lib_mpir_gc.vcxproj  ./thirdparty/mpir/msvc/vs22/lib_mpir_gc/
 
     - name: GMP Build Native (CMD)
       if: contains(matrix.os, 'windows')
@@ -94,7 +69,7 @@ jobs:
         echo "FINISHED build in CMD!"
       shell: cmd
 
-    - name: FIRST Check Lib (WINDOWS)
+    - name: FIRST Check Lib MPIR (WINDOWS)
       if: contains(matrix.os, 'windows')
       run: |
         echo "ls thirdparty/mpir"
@@ -166,37 +141,28 @@ jobs:
     - name: Build (WINDOWS CMD)
       if: contains(matrix.os, 'windows')
       run: | 
-        bazel build @cln//:cln --config windows
+        bazel build @cln//:cln --config windows_mt
       shell: cmd
-
-    - name: Check CLN lib (WINDOWS)
-      if: contains(matrix.os, 'windowsxx')
-      run: |
-        echo "lib /list bazel-bin\external\cln\cln.lib"
-        lib /list bazel-bin\external\cln\cln.lib
-        echo "dumpbin /directives bazel-bin\external\cln\cln.lib"
-        dumpbin /directives bazel-bin\external\cln\cln.lib
-
 
     - name: Run CLN demo (WINDOWS)
       if: contains(matrix.os, 'windows')
       run: |
-        bazel run //:app_demo_cln -s --config windows
+        bazel run //:app_demo_cln -s --config windows_mt
       shell: cmd
 
     - name: Build All (WINDOWS)
       if: contains(matrix.os, 'windows')
       run: |
         echo "BUILDING ALL (verbose)"
-        bazel build ... -s --config windows
+        bazel build ... -s --config windows_mt
 
-    - name: Build (LINUX)
+    - name: Build All (LINUX)
       if: contains(matrix.os, 'ubuntu')
       run: bazel build ... -s --config linux_${{ matrix.c_compiler }}
 
     - name: Test (WINDOWS)
       if: contains(matrix.os, 'windows')
-      run: bazel test ... --config windows
+      run: bazel test ... --config windows_mt
 
     - name: Test (LINUX)
       if: contains(matrix.os, 'ubuntu')

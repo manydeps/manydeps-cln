@@ -4,7 +4,9 @@
 
 [![Bazel on multiple platforms](https://github.com/manydeps/manydeps-cln/actions/workflows/bazel-multi-platform.yml/badge.svg)](https://github.com/manydeps/manydeps-cln/actions/workflows/bazel-multi-platform.yml)
 
-**Standard: C++17   (C++20 is not working on windows!)**
+![C++17](https://img.shields.io/badge/std-c%2B%2B17-blue) [![C++20_/permissive](https://img.shields.io/badge/std-c%2B%2B20_%2Fpermissive-blue)](https://devblogs.microsoft.com/cppblog/msvc-cpp20-and-the-std-cpp20-switch/)
+
+***Beware that c++20 only works with /permissive flag on windows, otherwise we get link errors LNK2019***.
 
 This is a demonstration project from the [ManyDeps](https://github.com/manydeps),
 for the C/C++ [CLN library from GINAC](https://www.ginac.de/CLN/) with GMP library using package managers (vcpkg and conan) on windows/linux.
@@ -201,8 +203,8 @@ have currently failed.
 ### Regarding MSVC
 
 The [Microsoft Visual C++](https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B) has been tested in two versions (image `windows-latest`):
-- It works on version: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.35.32215\bin\HostX64\x64\cl.exe
-- It fails on version: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\bin\HostX64\x64\cl.exe
+- It works on version for CMake: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.35.32215\bin\HostX64\x64\cl.exe
+- It works on version for Bazel: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\bin\HostX64\x64\cl.exe
 
 Remember that `long` is 32 bits on windows and 64 bits on linux.
 All these flags are passed on `.bazelrc` or CMake.
@@ -223,6 +225,9 @@ Target //:app_demo_cln failed to build
 
 This error does not happen with c++17 on windows or linux.
 With linux c++20 it works fine.
+On windows, it works with `c++20 /permissive` (but not with `/permissive-`).
+
+It seems that this is due to some breaking ABI change and name mangling differences: see [Microsoft Blog Post on C++20](https://devblogs.microsoft.com/cppblog/msvc-cpp20-and-the-std-cpp20-switch/).
 
 ### Issues with Bazel and CL toolchain
 
@@ -239,7 +244,7 @@ dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC"
 ```
 
 On `windows-2022` image, the official cl is `14.35.32215`, but bazel chooses toolchain `14.37.32822`.
-Solution is to delete the latest toolchain.
+Could not find any solution to fix this! Not even deleting the folder (as it breaks) and using BAZEL_VC + FULL flags.
 
 ## License
 
