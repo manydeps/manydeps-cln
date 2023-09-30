@@ -55,8 +55,12 @@ jobs:
     - name: Show all CL (WINDOWS)
       if: contains(matrix.os, 'windows')
       run: |
-        echo "ls C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\"
-        dir C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\
+        echo "dir C:\Program Files\"
+        dir "C:\Program Files\"
+        echo "dir C:\Program Files\Microsoft Visual Studio\"
+        dir "C:\Program Files\Microsoft Visual Studio\"
+        echo "dir C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\"
+        dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\"
         echo "where.exe cl"
         where.exe cl
         echo "where.exe link"
