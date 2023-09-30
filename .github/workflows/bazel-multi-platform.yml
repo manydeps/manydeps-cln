@@ -59,14 +59,19 @@ jobs:
         ./gmp-install.sh
       shell: bash
 
+    - name: GMP Build Native (PATCH BASH)
+      if: contains(matrix.os, 'windows')
+      run: |
+        echo "RUNNING PATCH FOR MPIR BUILD"
+        echo "copy c++20 standard patch to MPIR"
+        cp ./tools/patch/lib_mpir_cxx.vcxproj ./thirdparty/mpir/msvc/vs22/lib_mpir_cxx/
+        cp ./tools/patch/lib_mpir_gc.vcxproj  ./thirdparty/mpir/msvc/vs22/lib_mpir_gc/
+
     - name: GMP Build Native (CMD)
       if: contains(matrix.os, 'windows')
       run: |
         echo "RUNNING MANUAL BUILD"
         cd .\thirdparty\mpir\msvc\vs22\
-        echo "copy c++20 standard patch to MPIR"
-        copy /y .\tools\patch\lib_mpir_cxx.vcxproj .\thirdparty\mpir\msvc\vs22\lib_mpir_cxx\
-        copy /y .\tools\patch\lib_mpir_gc.vcxproj  .\thirdparty\mpir\msvc\vs22\lib_mpir_gc\
         echo "building generic version"
         cmd /c msbuild.bat gc LIB x64 Release
         echo "FINISHED build in CMD!"
