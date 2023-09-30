@@ -24,5 +24,6 @@ cc_binary(
     srcs = glob([
         "src/main_cln.cpp"
     ]),
-    deps = ["@cln//:cln"]
+    deps = ["@cln//:cln"],
+    linkstatic=1
 )
