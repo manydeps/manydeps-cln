@@ -21,46 +21,46 @@
   <PropertyGroup Label="Globals">
     <RootNamespace>mpir</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{6322DE11-2109-42FA-9179-333322FE30C6}</ProjectGuid>
+    <ProjectGuid>{396374D5-36B1-4E6A-A166-D8F729F75550}</ProjectGuid>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
-    <Import Project="..\..\mpir_release_dll.props" />
+    <Import Project="..\..\mpir_release_lib.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
-    <Import Project="..\..\mpir_debug_dll.props" />
+    <Import Project="..\..\mpir_debug_lib.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
-    <Import Project="..\..\mpir_release_dll.props" />
+    <Import Project="..\..\mpir_release_lib.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
-    <Import Project="..\..\mpir_debug_dll.props" />
+    <Import Project="..\..\mpir_debug_lib.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -78,10 +78,8 @@ prebuild gc Win32 22
     </PreBuildEvent>
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\..\</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;WIN32;HAVE_CONFIG_H;MSC_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_LIB;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <Link>
-    </Link>
     <PostBuildEvent>
       <Command>cd ..\..\
 postbuild "$(TargetPath)" 22
@@ -96,10 +94,8 @@ prebuild gc Win32 22
     </PreBuildEvent>
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\..\</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;WIN32;HAVE_CONFIG_H;MSC_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_LIB;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <Link>
-    </Link>
     <PostBuildEvent>
       <Command>cd ..\..\
 postbuild "$(TargetPath)" 22
@@ -115,10 +111,8 @@ prebuild gc x64 22
     <ClCompile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>..\..\..\</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;WIN32;HAVE_CONFIG_H;MSC_BUILD_DLL;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_LIB;HAVE_CONFIG_H;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <Link>
-    </Link>
     <PostBuildEvent>
       <Command>cd ..\..\
 postbuild "$(TargetPath)" 22
@@ -133,10 +127,8 @@ prebuild gc x64 22
     </PreBuildEvent>
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\..\</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;WIN32;HAVE_CONFIG_H;MSC_BUILD_DLL;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_LIB;HAVE_CONFIG_H;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <Link>
-    </Link>
     <PostBuildEvent>
       <Command>cd ..\..\
 postbuild "$(TargetPath)" 22
@@ -508,17 +500,6 @@ postbuild "$(TargetPath)" 22
     <ClCompile Include="..\..\..\scanf\vfscanf.c" />
     <ClCompile Include="..\..\..\scanf\vscanf.c" />
     <ClCompile Include="..\..\..\scanf\vsscanf.c" />
-    <ClCompile Include="..\..\..\cxx\dummy.cc" />
-    <ClCompile Include="..\..\..\cxx\isfuns.cc" />
-    <ClCompile Include="..\..\..\cxx\ismpf.cc" />
-    <ClCompile Include="..\..\..\cxx\ismpq.cc" />
-    <ClCompile Include="..\..\..\cxx\ismpz.cc" />
-    <ClCompile Include="..\..\..\cxx\ismpznw.cc" />
-    <ClCompile Include="..\..\..\cxx\osdoprnti.cc" />
-    <ClCompile Include="..\..\..\cxx\osfuns.cc" />
-    <ClCompile Include="..\..\..\cxx\osmpf.cc" />
-    <ClCompile Include="..\..\..\cxx\osmpq.cc" />
-    <ClCompile Include="..\..\..\cxx\osmpz.cc" />
     <ClCompile Include="..\..\..\mpn\generic\add.c" />
     <ClCompile Include="..\..\..\mpn\generic\add_1.c" />
     <ClCompile Include="..\..\..\mpn\generic\add_err1_n.c" />
