@@ -19,24 +19,12 @@ cc_binary(
     linkstatic=1
 )
 
-#cc_import(
-#  name = "get_libcln",
-#  static_library = "bazel-bin/external/cln/libcln.a",
-#  shared_library = "bazel-bin/external/cln/libcln.so",
-#)
-
-
 cc_binary(
     name = "app_demo_cln",
     srcs = glob([
         "src/main_cln.cpp"
     ]),
-    deps = ["@cln//:cln_shared"],
-    linkstatic=1,
-    #
-    # linkstatic=False,
-    #
+    deps = ["@cln//:cln"], # "@cln//:cln_shared"
+    linkstatic=1, # DEFAULT
     ####linkshared=1, # CANNOT DO THIS ON A .exe / BINARY!
-    ####copts=["-fPIC"],
-    #####linkopts = ["-Lbazel-bin/external/cln","-lcln"],
 )
