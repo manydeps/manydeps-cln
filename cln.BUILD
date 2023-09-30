@@ -209,7 +209,7 @@ cc_library(
 
 # CLN lib
 cc_library(
-    name = "cln", # OUTPUT: cln.lib
+    name = "cln", # OUTPUT: cln.lib ?
     srcs = glob(
         ["src/**/*.c",
         "src/**/*.cc"],
@@ -247,6 +247,10 @@ cc_library(
     # deps = [":cln_generated", "@gmp//:lib"],
     deps = [":cln_generated"],
     visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name="cln_shared",
     linkstatic = False,
     # linkstatic False means to generate .so / .dll
     #
@@ -258,8 +262,16 @@ cc_library(
     # alwayslink ON will generate libcln.lo and libcln.so (NOT libcln.a)
     #
     # https://stackoverflow.com/questions/51689092/playing-with-bazel-c-tutorials-build-does-not-create-use-shared-libraries
-    # copts=["-fPIC"]
+    # copts=["-fPIC"],
+    deps = [":cln"]
 )
+
+# to use as dynamic_deps = [":cln_shared_experimental"]
+#cc_shared_library(
+#    name="cln_shared_experimental",
+#    # shared_lib_name = "cln.so" # BUT, IN WINDOWS?
+#    deps=[":cln"]
+#)
 
 # bazel run @cln//:cln_example_fibonacci 10
 cc_binary(

@@ -31,8 +31,9 @@ cc_binary(
     srcs = glob([
         "src/main_cln.cpp"
     ]),
-    deps = ["@cln//:cln"], # ":get_libcln"
+    deps = ["@cln//:cln_shared"],
     linkstatic=1,
+    #
     # linkstatic=False,
     #
     ####linkshared=1, # CANNOT DO THIS ON A .exe / BINARY!
