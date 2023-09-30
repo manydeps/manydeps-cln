@@ -56,12 +56,12 @@ jobs:
       if: contains(matrix.os, 'windows')
       run: |
         echo "ls C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\"
-        ls C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\
-        echo "which cl"
-        which cl
-        echo "which link"
-        which link
-      shell: bash
+        dir C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\
+        echo "where.exe cl"
+        where.exe cl
+        echo "where.exe link"
+        where.exe link
+      shell: cmd
 
     - name: GMP Build Native (BASH)
       if: contains(matrix.os, 'ubuntu')
