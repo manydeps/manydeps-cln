@@ -210,7 +210,13 @@ All these flags are passed on `.bazelrc` or CMake.
 On Windows, when using c++20 the code refuses to link (maybe due to some previously non-c++20 dependency):
 
 ```
-
+[5 / 6] Linking app_demo_cln.exe; 1s local
+ERROR: D:/a/manydeps-cln/manydeps-cln/BUILD.bazel:21:10: Linking app_demo_cln.exe failed: (Exit 1120): link.exe failed: error executing command (from target //:app_demo_cln) C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.35.32215\bin\HostX64\x64\link.exe @bazel-out/x64_windows-fastbuild/bin/app_demo_cln.exe-2.params
+cln.lib(cl_prin_globals.obj) : error LNK2019: unresolved external symbol "struct cln::cl_heap_string * __cdecl cl_make_heap_string(char const *)" (?cl_make_heap_string@@YAPEAUcl_heap_string@cln@@PEBD@Z) referenced in function "public: __cdecl cln::cl_string::cl_string(char const *)" (??0cl_string@cln@@QEAA@PEBD@Z)
+  Hint on symbols that are defined and could potentially match:
+    "struct cln::cl_heap_string * __cdecl cln::cl_make_heap_string(char const *)" (?cl_make_heap_string@cln@@YAPEAUcl_heap_string@1@PEBD@Z)
+bazel-out\x64_windows-fastbuild\bin\app_demo_cln.exe : fatal error LNK1120: 1 unresolved externals
+Target //:app_demo_cln failed to build
 ```
 
 This error does not happen with c++17 on windows or linux.
@@ -231,6 +237,7 @@ dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC"
 ```
 
 On `windows-2022` image, the official cl is `14.35.32215`, but bazel chooses toolchain `14.37.32822`.
+Solution is to delete the latest toolchain.
 
 ## License
 
