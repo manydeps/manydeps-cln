@@ -258,7 +258,7 @@ cc_library(
     # alwayslink ON will generate libcln.lo and libcln.so (NOT libcln.a)
     #
     # https://stackoverflow.com/questions/51689092/playing-with-bazel-c-tutorials-build-does-not-create-use-shared-libraries
-    copts=["-fPIC"]
+    # copts=["-fPIC"]
 )
 
 # bazel run @cln//:cln_example_fibonacci 10
