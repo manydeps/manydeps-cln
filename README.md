@@ -175,6 +175,19 @@ For Linux they exist on `build/vcpkg_installed/x64-linux/lib/pkgconfig/` folder.
 
 If you find a better solution, please Let Us Know!
 
+
+## Using Bazel
+
+Bazel is **so much simpler!**
+Please take a look at [cln.BUILD](cln.BUILD) and [gmp.BUILD](gmp.BUILD),
+that declare both external libraries GMP and CLN.
+
+```
+bazel build ... --config windows
+bazel test ... --config windows
+bazel run @cln//:cln_example_fibonacci 10
+```
+
 ## Known Issues
 
 ### Regarding CMake
@@ -192,18 +205,32 @@ The [Microsoft Visual C++](https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2
 Remember that `long` is 32 bits on windows and 64 bits on linux.
 All these flags are passed on `.bazelrc` or CMake.
 
-## Using Bazel
+### Issues with C++ standard
 
-Bazel is **so much simpler!**
-Please take a look at [cln.BUILD](cln.BUILD) and [gmp.BUILD](gmp.BUILD),
-that declare both external libraries GMP and CLN.
+On Windows, when using c++20 the code refuses to link (maybe due to some previously non-c++20 dependency):
 
 ```
-bazel build ... --config windows
-bazel test ... --config windows
-bazel run @cln//:cln_example_fibonacci 10
+
 ```
 
+This error does not happen with c++17 on windows or linux.
+With linux c++20 it works fine.
+
+### Issues with Bazel and CL toolchain
+
+The GitHub folder contains several VC instances:
+
+```
+dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC"
+.
+..
+14.16.27023
+14.29.30133
+14.35.32215
+14.37.32822
+```
+
+On `windows-2022` image, the official cl is `14.35.32215`, but bazel chooses toolchain `14.37.32822`.
 
 ## License
 

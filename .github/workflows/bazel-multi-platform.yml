@@ -181,9 +181,7 @@ jobs:
     - name: Run CLN demo (WINDOWS)
       if: contains(matrix.os, 'windows')
       run: |
-        set BAZEL_VC="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC"
-        set BAZEL_VC_FULL_VERSION="14.35.32215"
-        bazel run //:app_demo_cln --config windows
+        bazel run //:app_demo_cln -s --config windows
       shell: cmd
 
     - name: Build All (WINDOWS)
