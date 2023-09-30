@@ -66,6 +66,7 @@ jobs:
         cd .\thirdparty\mpir\msvc\vs22\
         echo "copy c++20 standard patch to MPIR"
         copy /y .\tools\patch\lib_mpir_cxx.vcxproj .\thirdparty\mpir\msvc\vs22\lib_mpir_cxx\
+        copy /y .\tools\patch\lib_mpir_gc.vcxproj  .\thirdparty\mpir\msvc\vs22\lib_mpir_gc\
         echo "building generic version"
         cmd /c msbuild.bat gc LIB x64 Release
         echo "FINISHED build in CMD!"
