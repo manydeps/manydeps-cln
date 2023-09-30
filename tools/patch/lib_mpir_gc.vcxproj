@@ -110,6 +110,7 @@ prebuild gc x64 22
     </PreBuildEvent>
     <ClCompile>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/std:c++20 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalIncludeDirectories>..\..\..\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;WIN32;_LIB;HAVE_CONFIG_H;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
