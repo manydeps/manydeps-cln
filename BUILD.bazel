@@ -14,7 +14,8 @@ cc_binary(
     srcs = glob([
         "src/main.cpp", 
     ]),
-    deps = ["//include:manydeps-cln-lib", "@gmp//:lib", "@cln//:cln"],
+    # DO NOT PUT "@gmp//:lib" HERE!
+    deps = ["//include:manydeps-cln-lib", "@cln//:cln"],
     linkstatic=1
 )
 

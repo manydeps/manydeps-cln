@@ -101,8 +101,9 @@ cc_library(
 expand_template(
     name = "cln_autoconf_cl_config",
     out = "autoconf/cl_config.h",
+    # DISABLED GMP!
     substitutions = {
-        "#cmakedefine CL_USE_GMP 1" : "#define CL_USE_GMP 1",
+        "#cmakedefine CL_USE_GMP 1" : "#undef CL_USE_GMP", # "#define CL_USE_GMP 1",
         "#cmakedefine ASM_UNDERSCORE" : "/* #undef ASM_UNDERSCORE */",
         # "#cmakedefine CL_HAVE_ATTRIBUTE_FLATTEN" : "#define CL_HAVE_ATTRIBUTE_FLATTEN",    # LINUX
         "#cmakedefine CL_HAVE_ATTRIBUTE_FLATTEN" : "/* #undef CL_HAVE_ATTRIBUTE_FLATTEN */", # WINDOWS
@@ -151,8 +152,9 @@ cc_library(
 expand_template(
     name = "cln_base_cl_gmpconfig",
     out = "src/base/cl_gmpconfig.h",
+    # DISABLED GMP!
     substitutions = {
-        "#cmakedefine CL_USE_GMP 1" : "#define CL_USE_GMP 1",
+        "#cmakedefine CL_USE_GMP 1" : "#undef CL_USE_GMP", # "#define CL_USE_GMP 1",
     },
     template = "src/base/cl_gmpconfig.h.cmake",
 )
@@ -241,7 +243,9 @@ cc_library(
         "src/real/algebraic/cl_RA_sqrt.cc",
     ]),
     includes = ["include/", "src/", "autoconf/",],
-    deps = [":cln_generated", "@gmp//:lib"],
+    # DISABLED GMP!
+    # deps = [":cln_generated", "@gmp//:lib"],
+    deps = [":cln_generated"],
     visibility = ["//visibility:public"],
     linkstatic = 1
 )

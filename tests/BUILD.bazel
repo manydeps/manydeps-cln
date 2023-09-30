@@ -7,6 +7,6 @@ package(
 cc_test(
     name = "my_test",
     srcs = ["manydeps_cln.test.cpp"],  
-    deps = ["@catch2//:catch2_main", "@cln//:cln"],
+    deps = ["@catch2//:catch2_main", "@gmp//:lib", "@cln//:cln"],
     linkstatic=1
 )
