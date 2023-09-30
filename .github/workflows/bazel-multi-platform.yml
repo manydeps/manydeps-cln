@@ -53,7 +53,7 @@ jobs:
         git pull --recurse-submodules
 
     - name: Show all CL (WINDOWS)
-      if: contains(matrix.os, 'windows')
+      if: contains(matrix.os, 'windowsxxx')
       run: |
         echo "dir C:\Program Files\"
         dir "C:\Program Files\"
