@@ -139,7 +139,7 @@ jobs:
         echo "DISPLAY ERROR, IF OSX"
         cat tools/vcpkg/buildtrees/gmp/autoconf-x64-osx-err.log
 
-    - name: Check Lib (WINDOWS)
+    - name: Check Lib GMP (WINDOWS)
       if: contains(matrix.os, 'windows')
       run: |
         ls tools/vcpkg/packages/mpir_x64-windows-static/lib/*
@@ -170,7 +170,7 @@ jobs:
       shell: cmd
 
     - name: Check CLN lib (WINDOWS)
-      if: contains(matrix.os, 'windows')
+      if: contains(matrix.os, 'windowsxx')
       run: |
         echo "lib /list bazel-bin\external\cln\cln.lib"
         lib /list bazel-bin\external\cln\cln.lib
