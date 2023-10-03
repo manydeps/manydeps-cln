@@ -229,6 +229,8 @@ On windows, it works with `c++20 /permissive` (but not with `/permissive-`).
 
 It seems that this is due to some breaking ABI change and name mangling differences: see [Microsoft Blog Post on C++20](https://devblogs.microsoft.com/cppblog/msvc-cpp20-and-the-std-cpp20-switch/).
 
+The patch provided in tools/patch/string.h fixes this namespace link issue.
+
 ### Issues with Bazel and CL toolchain
 
 The GitHub folder contains several VC instances:
@@ -248,4 +250,9 @@ Could not find any solution to fix this! Not even deleting the folder (as it bre
 
 ## License
 
-MIT License + LGPL License if using gmp or mpir
+[GPLv3+ License](https://www.gnu.org/licenses/gpl-3.0.html)
+
+License is a combination of:
+
+- CLN (GPL-2.0-or-later)
+- GMP (GPL-2.0-or-later OR LGPL-3.0-or-later)
