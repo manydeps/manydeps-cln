@@ -137,6 +137,9 @@ jobs:
         echo "dumpbin /directives thirdparty\mpir\lib\x64\Release\mpirxx.lib"
         dumpbin /directives thirdparty\mpir\lib\x64\Release\mpirxx.lib
         echo "Finished Check Lib"
+        echo "Applying String Patch"
+        cp tools/patch/string.h thirdparty/cln/include/cln/
+        echo "Finished PATCH"
 
     - name: Build (WINDOWS CMD)
       if: contains(matrix.os, 'windows')
