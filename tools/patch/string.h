@@ -38,6 +38,8 @@ struct cl_heap_string : public cl_heap {
   friend const cl_string operator+(const cl_string& str1, const char* str2);
 };
 
+cl_heap_string* cl_make_heap_string(const char* s);
+
 struct cl_string : public cl_gcpointer {
  public:
   // Conversion to simple string.
